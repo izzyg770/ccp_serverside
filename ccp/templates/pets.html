@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/css/html5reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Pets</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a class = "current-page" href = "/pets/">Pets</a></li>
+                <li><a href = "/recipes/">Recipes</a></li>
+                <li><a href = "/travel/">Travel</a></li>
+            </ul>
+        </nav>
+        <h1 class = "title">Pets</h1>
+    </header>
+    <aside class = "table-of-contents">
+        <span class = "table-of-contents-category">Skip To Section:</span>
+        {% for pet in pets %}
+        <a href = "#item{{ pet.petid }}">{{ pet.pet_name }}</a>
+        {% endfor %}
+    </aside>
+    <main id = "main">
+        <br>
+        <div class="treat-container" id="treatContainer">
+            <div class="treat-content">
+                <p class="give-treat-text">Give a treat!</p>
+                <img src="/static/images/treat_icon.png" alt="Treat icon" class="treat-icon">
+                <button onclick="info_click()">What is this?</button>
+            </div>
+        </div>
+        <div class="info-page-container">
+            <div>Giving Treats</div>
+            <p>Click and drag the treat icon from the container to a pet on the page to give them a treat!</p>
+            <div class="close-container">
+                <button onclick="info_close()" id="close-button">
+                Close
+                </button>
+            </div>
+        </div>
+        {% for pet in pets %}
+        <div class = "pet-grid" id = "item{{ pet.petid }}">
+            <div class = "pet-name">
+                <h2>{{ pet.pet_name }}</h2>
+            </div>
+            <div class = "pet-main">
+                <img src="{{ url_for('download_pet_file', filename=pet.pet_filename) }}" alt="{{ pet.pet_alt }}"> 
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                {% for like in pet.likes %}
+                <p>{{ like.like_text }}</p>
+                {% endfor %}
+            </div>
+            <div class = "pet-blurb">
+                {% for blurb in pet.blurbs %}
+                <p>{{ blurb.blurb_text }}</p>
+                {% endfor %}
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media">
+                {% for media in pet.medias %}
+                    {% if media.media_filename.endswith(('.jpg', '.jpeg', '.png', '.gif', '.JPG')) %}
+                    <!-- Render an image -->
+                    <img src="{{ url_for('download_pet_file', filename=media.media_filename) }}" alt="{{ media.media_alt }}">
+                    {% elif media.media_filename.endswith(('.mp4', '.mov', '.webm')) %}
+                    <!-- Render a video -->
+                    <video controls>
+                        <source src="{{ url_for('download_pet_file', filename=media.media_filename) }}">
+                        Your browser does not support the video tag.  This was a video of {{ media.media_alt }}
+                    </video>
+                    {% else %}
+                    <!-- Unknown media type -->
+                    <p>Unknown media format</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </main>
+    <script>
+        // Info button click event
+        function info_click() {
+            $('.info-page-container').show();
+            console.log("Opened info page.");
+        }
+        function info_close() {
+            $('.info-page-container').hide();
+            console.log("Closed info page. Back to pets page.");
+        }
+       
+        $(document).ready(function() {
+            const treatIcon = document.querySelector(".treat-icon");
+
+            let draggedElement = null;
+
+            treatIcon.addEventListener("touchstart", function(event) {
+                draggedElement = this.cloneNode(true);
+                draggedElement.classList.add("dragged-treat");
+                draggedElement.style.position = "absolute";
+                draggedElement.style.left = (event.touches[0].clientX - this.offsetLeft) + "px";
+                draggedElement.style.top = (event.touches[0].clientY - this.offsetTop) + "px";
+                document.body.appendChild(draggedElement);
+            });
+
+            document.addEventListener("touchmove", function(event) {
+                event.preventDefault();
+                if (draggedElement) {
+                    draggedElement.style.left = (event.touches[0].clientX - draggedElement.offsetWidth / 2) + "px";
+                    draggedElement.style.top = (event.touches[0].clientY - draggedElement.offsetHeight / 2) + "px";
+                }
+            });
+
+            document.addEventListener("touchend", function(event) {
+                if (draggedElement) {
+                    const touchX = event.changedTouches[0].clientX;
+                    const touchY = event.changedTouches[0].clientY;
+
+                    const heartImage = document.createElement("img");
+                    heartImage.src = "/static/images/heart.gif";
+                    heartImage.alt = "Heart";
+                    heartImage.classList.add("heart-gif");
+                    // Position the heart image in the middle of the page
+                    heartImage.style.left = (touchX - heartImage.offsetWidth / 2) + "px";
+                    heartImage.style.top = (touchY - heartImage.offsetHeight / 2) + "px";
+                    document.body.appendChild(heartImage);
+
+                    setTimeout(() => {
+                        heartImage.remove();
+                    }, 1500);
+
+                    draggedElement.remove();
+                    draggedElement = null;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

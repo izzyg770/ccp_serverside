@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/html5reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Recipes</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#recipes-main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/pets/">Pets</a></li>
+                <li><a class = "current-page" href = "/recipes/">Recipes</a></li>
+                <li><a href = "/travel/">Travel</a></li>
+            </ul>
+        </nav>
+        <h1 class = "title">Recipes</h1>
+    </header>
+    <aside class = "table-of-contents">
+        <span class = "table-of-contents-category">Skip To Section:</span>
+        {% for recipe in recipes %}
+        <a href = "#item{{ recipe.recipeid }}">{{ recipe.recipe_name }}</a>
+        {% endfor %}
+    </aside>
+    <main id = "recipes-main">
+        <br>
+        {% for recipe in recipes %}
+        <div class = "recipe-grid" id = "item{{ recipe.recipeid }}">
+            <div class = "recipe-name">
+                <h2>{{ recipe.recipe_name }}</h2>
+            </div>
+            <div class = "recipe-main">
+                <img src="{{ url_for('download_recipe_file', filename=recipe.recipe_filename) }}" alt="{{ recipe.recipe_alt }}">
+            </div>
+            <div class = "recipe-details">
+                <ul>
+                    <li><span class = "category">Origin:</span> {{ recipe.origin }}</li>
+                    <li><span class = "category">Source:</span> {{ recipe.source }}</li>
+                    <li><span class = "category">Category:</span> {{ recipe.category }}</li>
+                </ul>
+            </div>
+            <div class = "recipe-blurb">
+                {% for blurb in recipe.blurbs %}
+                <p>{{ blurb.blurb_text }}</p>
+                {% endfor %}
+            </div>
+            <div class = "recipe-ingredients">
+                <h3>Recipe Ingredients</h3>
+                <br>
+                <ul>
+                    {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient.ingredient }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class = "recipe-steps">
+                <h3>Recipe Steps</h3>
+                <br>
+                <ul>
+                    {% for step in recipe.steps %}
+                    <li>{{ step.step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class = "recipe-media">
+            <h3>Additional Food Images</h3>
+                {% for media in recipe.medias %}
+                <img src="{{ url_for('download_recipe_file', filename=media.media_filename) }}" alt="{{ media.media_alt }}">
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </main>
+    
+</body>
+</html>

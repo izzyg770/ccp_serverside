@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>insta485</title>
+</head>
+<body>
+    <div>
+        <a style = "margin-left: 20px;" href = "/"><img src= "/static/images/insta_logo.png" alt="Insta Logo" width="50" height="50"></a>
+        <div>
+            <h1>{{ logname }}</h1>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <!-- DO NOT CHANGE THIS -->
+        <form action="/accounts/create/" method="post" enctype="multipart/form-data">
+            <input type="submit" name="delete" value="confirm delete account"/>
+            <input type="hidden" name="operation" value="delete"/>
+        </form>
+  
+    </div>
+</body>

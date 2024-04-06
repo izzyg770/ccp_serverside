@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>insta485</title>
+</head>
+<body>
+    <div>
+        <a style = "margin-left: 20px;" href = "/"><img src= "/static/images/insta_logo.png" alt="Insta Logo" width="50" height="50"></a>
+        <div>
+            <h1>Login</h1>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <form action="/accounts/" method="post" enctype="multipart/form-data">
+            <p>
+                <input type="text" name="username" placeholder = "username" required/>
+            </p>
+            <p>
+                <input type="password" name="password" placeholder = "password"required/>
+            </p>
+            <p>
+                <input type="submit" value="login"/>
+                <input type="hidden" name="operation" value="login"/>
+            </p>
+          </form>
+    </div>
+    <div>
+        <div style = "display: flex; align-items: last baseline; margin-left: 80px; margin-top: 10px">
+            <a>Don't have an account?</a>
+            <a class = "bold" style = "margin-left: 10px;" href="/accounts/create/">Sign up</a>
+        </div>
+    </div>

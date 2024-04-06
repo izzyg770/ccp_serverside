@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/html5reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" href="/static/images/ccp_logo.png">
+    <script src="/static/js/script.js"></script>
+    <title>Index</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+            <ul>
+                <li><a class = "current-page" href = "/">Home</a></li>
+                <li><a href = "/pets/">Pets</a></li>
+                <li><a href = "/recipes/">Recipes</a></li>
+                <li><a href = "/travel/">Travel</a></li>
+            </ul>
+        </nav>
+        <h1 class = "title">Course Content Project</h1>
+    </header>
+    <main id = "main">
+        <br>
+        <div class="newsletter-container">
+            <h2>Subscribe to Our Newsletter</h2>
+            <form id="newsletterForm">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" placeholder="Your Name" required>
+                <label for="emailAddress">Email:</label>
+                <input type="email" id="emailAddress" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="newsletterMessage"></p>
+        </div>
+    </main>
+</body>
+</html>

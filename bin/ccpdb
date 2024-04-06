@@ -1,0 +1,98 @@
+#!/bin/bash
+# ccpdb
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+
+# Sanity check command line options
+usage() {
+  echo "Usage: $0 (create|destroy|reset|dump)"
+}
+
+if [ $# -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+# Parse argument.  $1 is the first argument
+case $1 in
+  "create")
+    mkdir -p var/uploads
+    mkdir -p var/uploads/bacon
+    mkdir -p var/uploads/blat
+    mkdir -p var/uploads/fitz
+    mkdir -p var/uploads/guacamole
+    mkdir -p var/uploads/hangzhou
+    mkdir -p var/uploads/jiaozi
+    mkdir -p var/uploads/nyc
+    mkdir -p var/uploads/pluto
+    mkdir -p var/uploads/sage
+    mkdir -p var/uploads/smoothie
+    mkdir -p var/uploads/users
+    mkdir -p var/uploads/yellowstone
+
+    sqlite3 var/ccp.sqlite3 < sql/schema.sql
+    sqlite3 var/ccp.sqlite3 < sql/data.sql
+    rsync -av sql/uploads/* var/uploads/
+    rsync -av sql/uploads/bacon/* var/uploads/bacon/
+    rsync -av sql/uploads/blat/* var/uploads/blat/
+    rsync -av sql/uploads/fitz/* var/uploads/fitz/
+    rsync -av sql/uploads/guacamole/* var/uploads/guacamole/
+    rsync -av sql/uploads/hangzhou/* var/uploads/hangzhou/
+    rsync -av sql/uploads/jiaozi/* var/uploads/jiaozi/
+    rsync -av sql/uploads/nyc/* var/uploads/nyc/
+    rsync -av sql/uploads/pluto/* var/uploads/pluto/
+    rsync -av sql/uploads/sage/* var/uploads/sage/
+    rsync -av sql/uploads/smoothie/* var/uploads/smoothie/
+    rsync -av sql/uploads/users/* var/uploads/users/
+    rsync -av sql/uploads/yellowstone/* var/uploads/yellowstone/
+    ;;
+
+  "destroy")
+    rm -rf var/ccp.sqlite3 var/uploads 
+    rm -rf var/uploads/bacon/ var/uploads/blat/ 
+    rm -rf var/uploads/fitz/ var/uploads/guacamole/ 
+    rm -rf var/uploads/hangzhou/ var/uploads/jiaozi/ 
+    rm -rf var/uploads/nyc/ var/uploads/pluto/
+    rm -rf var/uploads/sage/ var/uploads/smoothie/
+    rm -rf var/uploads/users/ var/uploads/yellowstone/
+    ;;
+
+  "reset")
+    rm -rf var/ccp.sqlite3 var/uploads
+    mkdir -p var/uploads
+    mkdir -p var/uploads/bacon
+    mkdir -p var/uploads/blat
+    mkdir -p var/uploads/fitz
+    mkdir -p var/uploads/guacamole
+    mkdir -p var/uploads/hangzhou
+    mkdir -p var/uploads/jiaozi
+    mkdir -p var/uploads/nyc
+    mkdir -p var/uploads/pluto
+    mkdir -p var/uploads/sage
+    mkdir -p var/uploads/smoothie
+    mkdir -p var/uploads/users
+    mkdir -p var/uploads/yellowstone
+    sqlite3 var/ccp.sqlite3 < sql/schema.sql
+    sqlite3 var/ccp.sqlite3 < sql/data.sql
+    rsync -av sql/uploads/* var/uploads/
+    rsync -av sql/uploads/bacon/* var/uploads/bacon/
+    rsync -av sql/uploads/blat/* var/uploads/blat/
+    rsync -av sql/uploads/fitz/* var/uploads/fitz/
+    rsync -av sql/uploads/guacamole/* var/uploads/guacamole/
+    rsync -av sql/uploads/hangzhou/* var/uploads/hangzhou/
+    rsync -av sql/uploads/jiaozi/* var/uploads/jiaozi/
+    rsync -av sql/uploads/nyc/* var/uploads/nyc/
+    rsync -av sql/uploads/pluto/* var/uploads/pluto/
+    rsync -av sql/uploads/sage/* var/uploads/sage/
+    rsync -av sql/uploads/smoothie/* var/uploads/smoothie/
+    rsync -av sql/uploads/users/* var/uploads/users/
+    rsync -av sql/uploads/yellowstone/* var/uploads/yellowstone/
+    ;;
+
+  *)
+    usage
+    exit 1
+    ;;
+esac
