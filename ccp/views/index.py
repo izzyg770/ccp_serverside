@@ -9,44 +9,28 @@ import ccp
 
 
 @ccp.app.route('/')
+@ccp.app.route('/')
 def show_index():
-    """Index view."""
-    # if 'username' not in flask.session:
-    #    return flask.redirect(flask.url_for('show_login'))
-
+    """Index page view showing summaries of pets, recipes, and travels."""
     connection = ccp.model.get_db()
+    logname = flask.session.get('username')
 
-    logname = flask.session['username']
-    # Query users that the logged-in user is not following
-    cur_users = connection.execute(
-        "SELECT "
-        "u.username, "
-        "u.fullname, "
-        "u.filename, "
-        "u.alt "
-        "FROM users u "
-        "WHERE username != ? AND username NOT IN "
-        "(SELECT username2 FROM following WHERE username1 = ?)",
-        (logname, logname)
-    )
-    # Fetch all the users
-    users = cur_users.fetchall()
+    pets = connection.execute(
+        "SELECT petid, petname FROM pets ORDER BY petid ASC LIMIT 5"
+    ).fetchall()
 
-    user_data = []
-    for user in users:
-        username = user['username']
-        fullname = user['fullname']
-        user_image = user['filename']
-        user_alt = user['alt']
-        user_data.append({
-            'username': username,
-            'fullname': fullname,
-            'user_image': user_image,
-            'user_alt': user_alt,
-        })
+    recipes = connection.execute(
+        "SELECT recipeid, recipename FROM recipes ORDER BY recipeid ASC LIMIT 5"
+    ).fetchall()
+
+    travels = connection.execute(
+        "SELECT travelid, travelname FROM travel ORDER BY travelid ASC LIMIT 5"
+    ).fetchall()
+
     context = {
         "logname": logname,
-        "users": user_data,
+        "pets": pets,
+        "recipes": recipes,
+        "travels": travels
     }
-    # Render the explore template with the user data
     return flask.render_template("index.html", **context)

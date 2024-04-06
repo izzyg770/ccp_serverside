@@ -55,7 +55,7 @@ def show_travels():
         "LEFT JOIN travel_blurbs tb ON t.travelid = tb.travelid "
         "LEFT JOIN travel_media tm on t.travelid = tm.travelid "
         "JOIN users u ON t.owner = u.username "
-        "ORDER BY t.travelid DESC, tb.travelblurbid ASC, tm.travelmediaid ASC",
+        "ORDER BY t.travelid ASC, tb.travelblurbid ASC, tm.travelmediaid ASC",
     )
     rows = cur_travels.fetchall()
     all_travels = {}
@@ -64,6 +64,7 @@ def show_travels():
         travelid = row['travelid']
         if travelid not in all_travels:
             all_travels[travelid] = {
+                'travelid': travelid,
                 'travelname': row['travel_name'], 
                 'location': row['location'],
                 'mainid': row['mainid'],

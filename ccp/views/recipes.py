@@ -59,7 +59,7 @@ def show_recipes():
         "LEFT JOIN steps s ON r.recipeid = s.recipeid "
         "LEFT JOIN recipe_media rm on r.recipeid = rm.recipeid "
         "JOIN users u ON r.owner = u.username "
-        "ORDER BY r.recipeid DESC, rb.recipeblurbid ASC, i.ingredientid ASC, s.stepid ASC, rm.recipemediaid ASC",
+        "ORDER BY r.recipeid ASC, rb.recipeblurbid ASC, i.ingredientid ASC, s.stepid ASC, rm.recipemediaid ASC",
     )
     rows = cur_recipes.fetchall()
     all_recipes = {}

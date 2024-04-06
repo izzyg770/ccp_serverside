@@ -54,7 +54,7 @@ def show_pets():
         "LEFT JOIN pet_media pm on p.petid = pm.petid "
         "JOIN users u ON p.owner = u.username "
         # "GROUP BY p.petid, p.owner, p.petname, p.filename, p.alt, u.filename, u.alt, u.username, u.fullname "
-        "ORDER BY p.petid DESC, pl.petlikeid ASC, pb.petblurbid ASC, pm.petmediaid ASC",
+        "ORDER BY p.petid ASC, pl.petlikeid ASC, pb.petblurbid ASC, pm.petmediaid ASC",
     )
     rows = cur_pets.fetchall()
     all_pets = {}
@@ -62,9 +62,10 @@ def show_pets():
         pet_id = row['petid']
         if pet_id not in all_pets:
             all_pets[pet_id] = {
+                'pet_id': pet_id,
                 'pet_name': row['pet_name'],
                 'pet_filename': row['pet_filename'],
-                # etc...
+                'pet_alt': row['pet_alt'],
                 'likes': [],
                 'blurbs': [],
                 'medias': []

@@ -25,7 +25,7 @@
     <aside class = "table-of-contents">
         <span class = "table-of-contents-category">Skip To Section:</span>
         {% for pet in pets %}
-        <a href = "#item{{ pet.petid }}">{{ pet.pet_name }}</a>
+        <a href = "#item{{ pet.pet_id }}">{{ pet.pet_name }}</a>
         {% endfor %}
     </aside>
     <main id = "main">
@@ -47,7 +47,7 @@
             </div>
         </div>
         {% for pet in pets %}
-        <div class = "pet-grid" id = "item{{ pet.petid }}">
+        <div class = "pet-grid" id = "item{{ pet.pet_id }}">
             <div class = "pet-name">
                 <h2>{{ pet.pet_name }}</h2>
             </div>

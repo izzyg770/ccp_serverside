@@ -149,6 +149,36 @@ a:hover {
     padding: 10px 10px 0px 10px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box {
+    margin: 20px auto;
+    width: 250px;
+    background-color: #cb416b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.box h2 {
+    padding-bottom: 5px;
+}
+
+.box ul li {
+    list-style-type: circle;
+    color: white;
+}
+
+.box ul a {
+    color: white;
+}
+
 nav ul {
     display: grid;
     margin: 0;
@@ -606,6 +636,10 @@ button:hover {
 @media (min-width: 768px) {
     html {
         font-size: 18px;
+    }
+    .container {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
     .newsletter-container {
         width: 40%;

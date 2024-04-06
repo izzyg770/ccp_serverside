@@ -25,6 +25,32 @@
     </header>
     <main id = "main">
         <br>
+        <div class="container">
+            <div class="box">
+                <h2>PETS</h2>
+                <ul>
+                    {% for pet in pets %}
+                    <li><a href = "{{ url_for('show_pets') }}#item{{ pet.petid }}"> {{ pet.petname }} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box">
+                <h2>RECIPES</h2>
+                <ul>
+                    {% for recipe in recipes %}
+                    <li><a href = "{{ url_for('show_recipes') }}#item{{ recipe.recipeid }}"> {{ recipe.recipename }} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box">
+                <h2>TRAVELS</h2>
+                <ul>
+                    {% for travel in travels %}
+                    <li><a href = "{{ url_for('show_travels') }}#item{{ travel.travelid }}"> {{ travel.travelname }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
         <div class="newsletter-container">
             <h2>Subscribe to Our Newsletter</h2>
             <form id="newsletterForm">
