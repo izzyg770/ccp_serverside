@@ -633,6 +633,44 @@ button:hover {
     z-index: 9999;
 }
 
+.user-post {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-post h2 {
+    color: #cb416b;
+}
+
+.user-post img {
+    width: 300px;
+    height: auto;
+    margin: 10px 10px 10px 10px;
+    border: 2px solid black;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.user-image img{
+    width: 200px;
+    height: auto;
+    margin: 10px;
+    border: 2px solid black;
+}
+
+.box-2 {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
 @media (min-width: 768px) {
     html {
         font-size: 18px;

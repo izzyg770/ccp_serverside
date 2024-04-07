@@ -1,5 +1,5 @@
 -- Adding myself as first user
-INSERT INTO users(username, fullname, email, filename, alt, password)
+INSERT INTO users(username, fullname, email, alt, filename, password)
 VALUES
     ('igiallan', 'Isabella Giallanza', 'igiallan@umich.edu', 'Image of Isabella Giallanza', 'users/igiallan.jpg', 'password'),
     ('orozcoen', 'Enrique Orozco', 'orozcoen@umich.edu', 'Image of Enrique Orozco', 'users/orozcoen.jpeg', 'password');
