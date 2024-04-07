@@ -247,7 +247,7 @@ button {
 }
 
 button {
-    background-color: darkgreen;
+    background-color: #cb416b;
     color: #fff;
     cursor: pointer;
 }
@@ -633,6 +633,13 @@ button:hover {
     z-index: 9999;
 }
 
+.user-info {
+    display: grid;
+    grid-template-columns: 60% 35%;
+    grid-gap: 5px;
+    max-width: 500px;
+}
+
 .user-post {
     max-width: 300px;
     display: flex;
@@ -655,10 +662,13 @@ button:hover {
     object-fit: cover;
 }
 
+.user-image {
+    grid-area: 1 / 1 / span 6 / 2;
+}
+
 .user-image img{
-    width: 200px;
+    width: 100%;
     height: auto;
-    margin: 10px;
     border: 2px solid black;
 }
 
