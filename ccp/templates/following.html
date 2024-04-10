@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/html5reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" href="/static/images/ccp_logo.png">
+    <title>ccp</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/pets/">Pets</a></li>
+                <li><a href = "/recipes/">Recipes</a></li>
+                <li><a href = "/travel/">Travel</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id = "main">
+        <h1>Following</h1>
+        <div class = "container" >
+            {% for follow in following %}
+            <div class = "box" style = "width: 30%;">
+                <img src = "{{ url_for('download_file', filename=follow.filename) }}" width="50" height="50" alt = "follower profile">
+                <a class = "bold" style = "margin-left: 5px;" href = "/users/{{follow.user}}/"> {{follow.user}}</a>
+                    {% if logname != follow.user %}
+                        {% if follow.follow_status == 'Following' %}
+                        <div class = "right">
+                            following
+                            <form action="{{ url_for('following_handler') }}?target=/users/{{ follow.user }}" method="post" enctype="multipart/form-data">
+                                <input type="submit" name="unfollow" value="unfollow"/>
+                                <input type="hidden" name="username" value="{{ follow.user }}"/>
+                                <input type="hidden" name="operation" value="unfollow"/>
+                            </form>
+                        </div>
+                        {% else %}
+                        <div class = "right">
+                            not following
+                            <form action="{{ url_for('following_handler') }}?target=/users/{{ follow.user }}" method="post" enctype="multipart/form-data">
+                                <input type="submit" name="follow" value="follow"/>
+                                <input type="hidden" name="username" value="{{ follow.user }}"/>
+                                <input type="hidden" name="operation" value="follow"/>
+                            </form>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html> 

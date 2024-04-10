@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/html5reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pets</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <ul>
+                <li><a href = "index.html">Home</a></li>
+                <li><a class = "current-page" href = "pets.html">Pets</a></li>
+                <li><a href = "recipes.html">Recipes</a></li>
+                <li><a href = "travel.html">Travel</a></li>
+            </ul>
+        </nav>
+        <h1 class = "title">Pets</h1>
+    </header>
+    <aside class = "table-of-contents">
+        <span class = "table-of-contents-category">Skip To Section:</span>
+        <a href = "#item1">Bacon Q Dog</a>
+        <a href = "#item2">Fitz</a>
+        <a href = "#item3">Pluto</a>
+        <a href = "#item4">Sage</a>
+        <a href = "#item5">Smoothie</a>
+    </aside>
+    <main id = "main">
+        <br>
+        <div class="treat-container" id="treatContainer">
+            <div class="treat-content">
+                <p class="give-treat-text">Give a treat!</p>
+                <img src="images/treat_icon.png" alt="Treat icon" class="treat-icon">
+                <button onclick="info_click()">What is this?</button>
+            </div>
+        </div>
+        <div class="info-page-container">
+            <div>Giving Treats</div>
+            <p>Click and drag the treat icon from the container to a pet on the page to give them a treat!</p>
+            <div class="close-container">
+                <button onclick="info_close()" id="close-button">
+                Close
+                </button>
+            </div>
+        </div>
+        <!-- First Pet -->
+        <div class = "pet-grid" id = "item1">
+            <div class = "pet-name">
+                <h2>BACON Q DOG</h2>
+            </div>
+            <div class = "pet-main">
+                <img src="images/bacon/bacon.jpg" alt="Brown labradoodle wearing colorful lei"> 
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                <p>Belly rubs, playing tug-of-war, and sneaking onto the couch!</p>
+            </div>
+            <div class = "pet-blurb">
+                <p>Bacon Q. Dog is a 9yr old labradoodle. He prefers to spend his days lounging among the three different beds/couches that his family has gifted him. He enjoys a walk or two around the neighborhood, as long as he can pretend that he doesn't see any of the other animals to avoid the embarrassment of not wanting to admit he has no wolf-like skills in chasing them.</p> 
+                <p>At night just as the rest of the family is ready to relax, Bacon suddenly wants to release all of his energy. He will place his toys on a mini couch and frantically drag the couch around, giving his toys "a ride." There is also a lot of rolling. Lots and lots of rolling.</p>
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media">
+                <div class = "pet-media-piece">
+                    <img src="images/bacon/bacon_bandana.JPG" alt = "Brown labradoodle wearing an orange bandana">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/bacon/bacon_graduation.JPG" alt="Small labradoodle puppy wearing a graduation cap and gown">
+                </div>
+                <div class = "pet-media-piece">
+                    <video controls>
+                        <source src="images/bacon/bacon_agility.mov">
+                        Your browser does not support the video tag.  This was a video of a girl and dog demonstrating a sit and stay procedure
+                    </video>
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/bacon/bacon_halloween.JPG" alt="Brown labradoodle wearing a pirate costume">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Second Pet -->
+        <div class = "pet-grid" id = "item2">
+            <div class = "pet-name">
+                <h2> Fitz </h2>
+            </div>
+            <div class = "pet-main">
+                <img src="images/fitz/Fitz.jpeg" alt = "Boston terrior watching a tennis ball at the table">
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                <p>Blankets, being warm, and barking!</p>
+            </div>
+            <div class = "pet-blurb">
+                <p>Fitz is a boston terrior. He loves chasing tennis balls, chipmunks, squirrels, and birds. He is often found sitting by the fire in wintertime and in sun patches when available. He's energetic, mischievious, and easily bored. He loves people and gets grumpy if left without a lap too long.</p>
+                <p>Fitz loves barking up trees, running aorund on the lawn, and digging in the dirt looking for moles. He especially likes getting treats and whines when he comes inside and doesn't get a snack.</p>
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media">
+                <div class = "pet-media-piece">
+                    <img src="images/fitz/Fitz_standing_on_chair.jpeg" alt = "Fitz standing on a wooden chair, looking at the camera.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/fitz/Fitz_sleeping.jpeg" alt = "Fitz sleeping in a fuzzy dog bed.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/fitz/Fitz_on_the_lawn.jpeg" alt = "Fitz laying out on the lawn in the grass.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/fitz/Fitz_laying_in_bed.jpeg" alt = "Fitz sleeping with his face buried in a plaid blanket, only his head is visible.">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Third Pet -->
+        <div class = "pet-grid" id = "item3">
+            <div class = "pet-name">
+                <h2>Pluto</h2>
+            </div>
+            <div class = "pet-main">
+                <img src="images/pluto/pluto.jpg" alt = "White dog looking up.">
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                <p>Eating his bone, going to the beach, and his toy duck!</p>
+            </div>
+            <div class = "pet-blurb">
+                <p>Pluto is a five year old rescue dog of an unknown breed. He was found wandering alone and taken to the Valley Humane Society where he found his new family. From a young age, Pluto always had a special personality, he was known for being very very lazy! He spends most of his time staring out the window to keep watch of his house. Don’t let the laziness fool you because Pluto defends his family from the mailman and squirrels every single day.</p>
+                <p>Aside from his job as defender of the house, Pluto likes to have fun. Pluto’s favorite part of the day is his daily walk. Sometimes he even gets to go to the park and meet his neighbors. He also loves his toy duck, and only his toy duck. As a dog, it's in his nature to hunt and so he makes sure to get some practice with his toy duck.</p>
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media">
+                <div class = "pet-media-piece">
+                    <img src="images/pluto/pluto_cookie.JPG" alt = "Pluto the dog standing up to eat a cookie.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/pluto/pluto_sleeping.jpg" alt = "Pluto sleeping on the bed.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/pluto/pluto_walk.jpg" alt = "Pluto the dog on a walking trail.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/pluto/pluto_sitting.jpg" alt = "Pluto sitting and posed on top of a table">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Fourth Pet -->
+        <div class = "pet-grid" id = "item4">
+            <div class = "pet-name">
+                <h2>Sage</h2>
+            </div>
+            <div class = "pet-main">
+                <img src="images/sage/sage_classic.jpeg" alt = "A smiling golden retriever lying on the bed">
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                <p>Carrot, nap, and big park!</p>
+            </div>
+            <div class = "pet-blurb">
+                <p>Sage is a 3 year old Golden Retriever. She is one of the laziest dogs. She loves sneaking into the bedroom and hopping onto the neatest bed. She also loves riding in a car with the windows open feeling the wind and air. She enjoys walking, only if you take her for a ride to a big arboretum or park. Walking around the neighborhood is not necessarily her cup of tea.</p>
+                <p>Her favorite food is corn. One day, she stole corn on the cob from the dining table, which was surprising because she is normally gentle and polite. She took the stolen corn to the patio and enjoyed her meal by herself. Unfortunately, the corn turned out to be unripe, so she ended up vomiting it all later.</p>
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media"> 
+                <div class = "pet-media-piece">
+                    <img src="images/sage/sage_young.jpeg" alt = "A young golden retriever is laying down">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/sage/sage_car.jpeg" alt = "A happy golden retriever is sitting in the car's backseat.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/sage/sage_sleep.jpeg" alt = "A golden retriever is sleeping on the couch.">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/sage/sage_pet.jpeg" alt = "A man's hand is petting a golden retriever's neck.">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Fifth Pet -->
+        <div class = "pet-grid" id = "item5">
+            <div class = "pet-name">
+                <h2>Smoothie</h2>
+            </div>
+            <div class = "pet-main">
+                <img src="images/smoothie/Smoothie_staring.jpg" alt = "Long-hair beautiful, orange tabby cat">
+            </div>
+            <div class = "pet-likes">
+                <h3>Likes:</h3>
+                <p>Playing and sunshine!</p>
+            </div>
+            <div class = "pet-blurb">
+                <p>Smoothie has been dubbed the "world's most photogenic cat", and her emerald eyes and golden fur have even inspired a mural in New Zealand. Smoothie also has an aptly-named brother named Milkshake, and the two are often featured together across social media platforms.</p>
+                <p>She became an internet sensation with 2.3 million followers on her smoothiethecat Instagram account.</p>
+            </div>
+            <div class = "pet-media-title">
+                <h3>Photo Gallery</h3>
+            </div>
+            <div class = "pet-media">
+                <div class = "pet-media-piece">
+                    <img src="images/smoothie/Smoothie_yawn.jpg" alt = "Smoothie is yawning">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/smoothie/Smoothie_lying.jpg" alt = "Smoothie is lying">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/smoothie/Smoothie_staring.jpg" alt = "Smoothie is staring at you">
+                </div>
+                <div class = "pet-media-piece">
+                    <img src="images/smoothie/Smoothie_curious.jpg" alt = "Smoothie is curious about the world">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Info button click event
+        function info_click() {
+            $('.info-page-container').show();
+            console.log("Opened info page.");
+        }
+        function info_close() {
+            $('.info-page-container').hide();
+            console.log("Closed info page. Back to pets page.");
+        }
+       
+        $(document).ready(function() {
+            const treatIcon = document.querySelector(".treat-icon");
+
+            let draggedElement = null;
+
+            treatIcon.addEventListener("touchstart", function(event) {
+                draggedElement = this.cloneNode(true);
+                draggedElement.classList.add("dragged-treat");
+                draggedElement.style.position = "absolute";
+                draggedElement.style.left = (event.touches[0].clientX - this.offsetLeft) + "px";
+                draggedElement.style.top = (event.touches[0].clientY - this.offsetTop) + "px";
+                document.body.appendChild(draggedElement);
+            });
+
+            document.addEventListener("touchmove", function(event) {
+                event.preventDefault();
+                if (draggedElement) {
+                    draggedElement.style.left = (event.touches[0].clientX - draggedElement.offsetWidth / 2) + "px";
+                    draggedElement.style.top = (event.touches[0].clientY - draggedElement.offsetHeight / 2) + "px";
+                }
+            });
+
+            document.addEventListener("touchend", function(event) {
+                if (draggedElement) {
+                    const touchX = event.changedTouches[0].clientX;
+                    const touchY = event.changedTouches[0].clientY;
+
+                    const heartImage = document.createElement("img");
+                    heartImage.src = "images/heart.gif";
+                    heartImage.alt = "Heart";
+                    heartImage.classList.add("heart-gif");
+                    // Position the heart image in the middle of the page
+                    heartImage.style.left = (touchX - heartImage.offsetWidth / 2) + "px";
+                    heartImage.style.top = (touchY - heartImage.offsetHeight / 2) + "px";
+                    document.body.appendChild(heartImage);
+
+                    setTimeout(() => {
+                        heartImage.remove();
+                    }, 1500);
+
+                    draggedElement.remove();
+                    draggedElement = null;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

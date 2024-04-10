@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/html5reset.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" href="/static/images/ccp_logo.png">
+    <title>{{ username }}</title>
+</head>
+<body>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+            <ul>
+                <li><a href = "/">Home</a></li>
+                <li><a href = "/pets/">Pets</a></li>
+                <li><a href = "/recipes/">Recipes</a></li>
+                <li><a href = "/travel/">Travel</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id = "main">
+        <h1> {{ username }}</h1>
+        <div class = "user-info">
+            <div class = "user-image">
+                <img src="{{ url_for('download_file', filename=filename) }}", alt="{{ username }}"/>
+            </div>
+            {% if logname == username %}
+                <a class = "bold" href = "/accounts/edit/">Edit profile</a>
+                <form action="{{ url_for('logout') }}" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="logout" value="Logout"/>
+                </form>
+            {% elif relationship %}
+                following
+                <form action="{{ url_for('following_handler') }}?target=/users/{{ username }}" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="unfollow" value="unfollow"/>
+                    <input type="hidden" name="username" value="{{ username }}"/>
+                    <input type="hidden" name="operation" value="unfollow"/>
+                </form>
+            {% else %}
+                not following
+                <form action="{{ url_for('following_handler') }}?target=/users/{{ username }}" method="post" enctype="multipart/form-data">
+                    <input type="submit" name="follow" value="follow"/>
+                    <input type="hidden" name="username" value="{{ username }}"/>
+                    <input type="hidden" name="operation" value="follow"/>
+                </form>
+            {% endif %}
+            {% if total_posts == 1 %}
+                <p>1 post</p>
+            {% else %}
+                <p>{{ total_posts }} posts</p>
+            {% endif %}
+            
+            {% if num_followers == 1 %}
+                <p><a class = "bold" href = "/users/{{ username }}/followers/">1 follower</a></p>
+            {% else %}
+                <p><a class = "bold" href = "/users/{{ username }}/followers/">{{ num_followers }} followers</a></p>
+            {% endif %}
+            
+            <p><a class = "bold" href = "/users/{{ username }}/following/">{{ num_following }} following</a></p>
+            <p>{{ fullname }}</p>
+            {% if logname == username %}
+            <div class="box-2">
+                <form action="/posts/" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="image/*" required/>
+                    <input type="text" name="alt_text" placeholder="Alt text for image" required/>
+                    <select name="post_type">
+                        <option value="pet">Pet</option>
+                        <option value="travel">Travel</option>
+                        <option value="recipe">Recipe</option>
+                    </select>
+                    <!-- Add additional fields based on the post type -->
+                    {% if post_type == 'pet' %}
+                    <input type="text" name="petname" placeholder="Pet Name" required/>
+                    <input type = "text" name="petlikes" placeholder="Pet Like" required/>
+                    <input type = "text" name="petblurb" placeholder="Pet Blurb" required/>
+                    <input type = "file" name="petmedia" accept="image/*" required/>
+                    {% elif post_type == 'recipe' %}
+                    <input type="text" name="recipename" placeholder="Recipe Name" required/>
+                    {% elif post_type == 'travel' %}
+                    <input type="text" name="travelname" placeholder="Travel Name" required/>
+                    {% endif %}
+                    <input type="submit" name="create_post" value="Upload new post"/>
+                    <input type="hidden" name="operation" value="create"/>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        <br>
+        <div class = "container">
+            {% for pet in pets %}
+            <div class = "user-post">
+                <h2>{{ pet.petname }}</h2>
+                <a href = "{{ url_for('show_pets') }}#item{{ pet.petid }}"><img src = "{{ url_for('download_file', filename=pet.filename) }}" alt = "{{ pet.alt }}"/></a>
+            </div>
+            {% endfor %}
+            {% for recipe in recipes %}
+            <div class = "user-post">
+                <h2>{{ recipe.recipename }}</h2>
+                <a href = "{{ url_for('show_recipes') }}#item{{ recipe.recipeid }}"><img src = "{{ url_for('download_file', filename=recipe.filename) }}" alt = "{{ recipe.alt }}" ></a>
+            </div> 
+            {% endfor %}
+            {% for travel in travels %}
+            <div class = "user-post" >
+                <h2>{{ travel.travelname }}</h2>
+                <a href = "{{ url_for('show_travels') }}#item{{ travel.travelid }}"><img src = "{{ url_for('download_file', filename=travel.still) }}" alt = "{{ travel.alt }}" ></a>
+            </div>
+            {% endfor %}
+        </div>
+        {% if total_posts == 0 %}
+            <p> No posts yet. </p>
+        {% endif %}
+    </main>
+</body>
+</html> 
