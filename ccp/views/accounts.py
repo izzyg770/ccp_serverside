@@ -119,11 +119,12 @@ def hash_password(password):
 def insert_user(username, fullname, email, filename, password_db_string):
     """Insert a new user into the database."""
     connection = ccp.model.get_db()
+    image_description = "Image of {}".format(fullname)
     connection.execute(
         "INSERT INTO users"
         "(username, fullname, email, filename, password, alt) "
         "VALUES (?, ?, ?, ?, ?, ?)",
-        (username, fullname, email, filename, password_db_string, username)
+        (username, fullname, email, filename, password_db_string, image_description)
     )
     connection.commit()
 
