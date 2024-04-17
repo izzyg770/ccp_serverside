@@ -25,8 +25,8 @@ def post():
         return flask.redirect(flask.url_for('show_index'))
 
     if operation == 'create':
-        handle_create(target)
-        return flask.redirect(target)
+        handle_create()
+        return flask.redirect(flask.url_for('show_index'))
 
     if operation == 'edit_account':
         handle_edit_account()
@@ -34,7 +34,7 @@ def post():
 
     if operation == 'delete':
         handle_delete(target)
-        return flask.redirect(target)
+        return flask.redirect(flask.url_for('login'))
 
     if operation == 'update_password':
         handle_update_password()
@@ -129,7 +129,7 @@ def insert_user(username, fullname, email, filename, password_db_string):
     connection.commit()
 
 
-def handle_create(target):
+def handle_create():
     """Handle the create operation."""
     if 'username' in flask.session:
         return flask.redirect(flask.url_for('edit'))
@@ -149,14 +149,13 @@ def handle_create(target):
         "WHERE username=?",
         (username, )
     )
-    if cur:
-        flask.abort(409) 
+    if cur.fetchone():
+        flask.abort(409)
     filename = generate_filename(fileobj)
     filename = save_file(fileobj, filename)
     password_db_string = hash_password(password)
     insert_user(username, fullname, email, filename, password_db_string)
     flask.session['username'] = username
-    return flask.redirect(target)
 
 
 def handle_edit_account():
@@ -284,27 +283,18 @@ def handle_update_password():
     connection.commit()
 
 
-@ccp.app.route('/accounts/login/', methods=['POST'])
-def login():
-    """Login display."""
-    print("DEBUG Login: POST", flask.request.form['username'])
-    flask.session['username'] = flask.request.form['username']
-    print(flask.session['username'])
-    return flask.redirect(flask.url_for('show_index'))
-
-
 @ccp.app.route('/accounts/logout/', methods=['POST'])
 def logout():
     """Logout routing."""
     print("DEBUG Logout:", flask.session['username'])
     flask.session.clear()
-    return flask.redirect(flask.url_for('login'))
+    return flask.redirect(flask.url_for('show_login'))
 
 
 @ccp.app.route('/accounts/create/', methods=['GET'])
 def create():
     """Create account."""
-    print("DEBUG: test")
+    # print("DEBUG: test")
 
     if 'username' in flask.session:
         return flask.redirect(flask.url_for('edit'))

@@ -9,13 +9,14 @@
     <title>ccp</title>
 </head>
 <body>
-    <div>
-        <a style = "margin-left: 20px;" href = "/"><img src= "/static/images/ccp_logo.png" alt="CCP Logo" width="50" height="50"></a>
-        <a class = "bold" style = "float: right;" href="/accounts/login/">Log in</a>
-        <hr>
-    </div>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+        </nav>
+    </header>
     <main id = "main">
-        <form class="create" action="/accounts/create/" method="POST" enctype="multipart/form-data">
+        <form class="create" action="/accounts/" method="POST" enctype="multipart/form-data">
             <p>
                 <label for="f">Photo</label>
                 <input type="file" id="f" name="file" required/><br>
@@ -45,3 +46,4 @@
         </div>
     </main>
 </body>
+</html>

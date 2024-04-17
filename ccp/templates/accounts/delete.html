@@ -9,19 +9,19 @@
     <title>ccp</title>
 </head>
 <body>
-    <div>
-        <a style = "margin-left: 20px;" href = "/"><img src= "/static/images/ccp_logo.png" alt="CCP Logo" width="50" height="50"></a>
-        <div>
-            <h1>{{ logname }}</h1>
-        </div>
-        <hr>
-    </div>
-    <div>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+        </nav>
+    </header>
+    <main id = "main">
         <!-- DO NOT CHANGE THIS -->
-        <form action="/accounts/create/" method="post" enctype="multipart/form-data">
+        <form action="/accounts/" method="post" enctype="multipart/form-data">
             <input type="submit" name="delete" value="confirm delete account"/>
             <input type="hidden" name="operation" value="delete"/>
         </form>
   
-    </div>
+    </main>
 </body>
+</html>

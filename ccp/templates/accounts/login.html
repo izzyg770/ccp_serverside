@@ -9,14 +9,13 @@
     <title>ccp</title>
 </head>
 <body>
-    <div>
-        <a style = "margin-left: 20px;" href = "/"><img src= "/static/images/ccp_logo.png" alt="CCP Logo" width="50" height="50"></a>
-        <div>
-            <h1>Login</h1>
-        </div>
-        <hr>
-    </div>
-    <div>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+        </nav>
+    </header>
+    <main id = "main">
         <form action="/accounts/" method="post" enctype="multipart/form-data">
             <p>
                 <input type="text" name="username" placeholder = "username" required/>
@@ -28,11 +27,13 @@
                 <input type="submit" value="login"/>
                 <input type="hidden" name="operation" value="login"/>
             </p>
-          </form>
-    </div>
+        </form>
+    </main>
     <div>
         <div style = "display: flex; align-items: last baseline; margin-left: 80px; margin-top: 10px">
             <a>Don't have an account?</a>
             <a class = "bold" style = "margin-left: 10px;" href="/accounts/create/">Sign up</a>
         </div>
     </div>
+</body>
+</html>

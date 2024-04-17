@@ -9,18 +9,16 @@
     <title>ccp</title>
 </head>
 <body>
-    <div>
-        <a href = "/"><img src= "/static/images/ccp_logo.png" alt="CCP Logo" width="50" height="50"></a>
-        <div style = "float:right; margin: 20px">
-            <a class = "bold" href = "/explore/">explore</a> | 
-            <a class = "bold" href = "/users/{{ logname }}/">{{ logname }}</a>
-        </div>
-        <hr>
-    </div>
-    <div>
+    <header>
+        <a class = "skip-link" href = "#main">Skip to Main Content</a>
+        <nav>
+            <a class = "ccp-logo" href="/"><img src = "/static/images/ccp_logo.png" alt = "CCP Logo"/></a>
+        </nav>
+    </header>
+    <main id = "main">
         <img src = "/uploads/{{ user_image }}" alt = "profile" width="50" height="50"> 
         <a class = "bold"> {{ logname }} </a>
-        <form action="/accounts/edit/" method="post" enctype="multipart/form-data">
+        <form action="/accounts/" method="post" enctype="multipart/form-data">
             <p>
                 <label for="f">Photo</label>
                 <input type="file" id="f" name="file" accept="image/*"/>
@@ -44,4 +42,6 @@
         <div>
             <a class = "bold" href="{{ url_for('show_delete') }}">Delete Account</a>
         </div>
-    </div>
+    </main>
+</body>
+</html>
