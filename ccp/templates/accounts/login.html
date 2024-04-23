@@ -16,12 +16,15 @@
         </nav>
     </header>
     <main id = "main">
+        <h1>Welcome to CCP!</h1>
         <form action="/accounts/" method="post" enctype="multipart/form-data">
             <p>
-                <input type="text" name="username" placeholder = "username" required/>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder = "username" required/>
             </p>
             <p>
-                <input type="password" name="password" placeholder = "password"required/>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder = "password"required/>
             </p>
             <p>
                 <input type="submit" value="login"/>
@@ -29,11 +32,11 @@
             </p>
         </form>
     </main>
-    <div>
+    <footer>
         <div style = "display: flex; align-items: last baseline; margin-left: 80px; margin-top: 10px">
             <a>Don't have an account?</a>
             <a class = "bold" style = "margin-left: 10px;" href="/accounts/create/">Sign up</a>
         </div>
-    </div>
+    </footer>
 </body>
 </html>

@@ -64,9 +64,12 @@
             {% if logname == username %}
             <div class="box-2">
                 <form action="/posts/" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file" accept="image/*" required/>
-                    <input type="text" name="alt_text" placeholder="Alt text for image" required/>
-                    <select name="post_type">
+                    <label for="file">Photo</label>
+                    <input type="file" id="file" name="file" accept="image/*" required/>
+                    <label for="alt_text">Alt Text</label>
+                    <input type="text" id="alt_text" name="alt_text" placeholder="Alt text for image" required/>
+                    <label for="post_type">Post Type</label>
+                    <select id="post_type" name="post_type">
                         <option value="pet">Pet</option>
                         <option value="travel">Travel</option>
                         <option value="recipe">Recipe</option>
