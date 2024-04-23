@@ -1,0 +1,6 @@
+[build]
+  command = "./bin/ccprun"
+
+[build.environment]
+  FLASK_ENV = "development"
+  FLASK_APP = "demo"
